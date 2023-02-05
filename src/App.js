@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header/Header";
-import Tasks from "./pages/Tasks/Tasks";
+import Tasks from "./pages/Tasks/TaskList";
 import AddNew from "./pages/AddNew/AddNew";
 
 function App() {
