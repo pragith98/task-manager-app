@@ -22,7 +22,7 @@ function Header() {
           <div className="collapse navbar-collapse" id="navbarColor01">
             <ul className="navbar-nav me-auto">
               <li className="nav-item">
-                <Link className="nav-link active" to="/">
+                <Link className="nav-link" to="/">
                   Tasks
                   <span className="visually-hidden">(current)</span>
                 </Link>
