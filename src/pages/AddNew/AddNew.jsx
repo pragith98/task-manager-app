@@ -1,8 +1,11 @@
 import axios from "axios";
 import { useFormik } from "formik";
+import { useState } from "react";
 import { v4 as uuid4 } from "uuid";
 
 function AddNew() {
+  const [message, setMessage] = useState("");
+
   const initialValues = {
     date: "",
     task: "",
@@ -18,11 +21,11 @@ function AddNew() {
       .put(apiUrl, task)
       .then((response) => {
         if (response.status === 200) {
-          console.log("Data saved");
+          setMessage("Data saved");
         }
       })
       .catch((error) => {
-        console.log(error);
+        setMessage("Data not saved");
       });
   };
 
@@ -94,6 +97,9 @@ function AddNew() {
                 Submit
               </button>
             </fieldset>
+            {message ? (
+              <div className="alert alert-dismissible alert-primary mt-4">{message}</div>
+            ) : null}
           </form>
         </div>
       </div>
