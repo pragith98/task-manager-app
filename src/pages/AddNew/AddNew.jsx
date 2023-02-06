@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useFormik } from "formik";
 
 function AddNew() {
@@ -7,7 +8,20 @@ function AddNew() {
   };
 
   const onSubmit = (values) => {
-    console.log(values);
+    const apiUrl =
+      "https://reacttaskmanager-c929c-default-rtdb.firebaseio.com/tasks/1.json";
+    const task = { ...values, status: "New", id: 1 };
+    
+    axios
+      .put(apiUrl, task)
+      .then((response) => {
+        if (response.status === 200) {
+          console.log("Data saved");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const validate = (values) => {
