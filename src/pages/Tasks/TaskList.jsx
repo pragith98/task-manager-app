@@ -1,21 +1,19 @@
 import TaskItem from "./TaskItem";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function TaskList() {
-  const [taskList, setTask] = useState([
-    {
-      id: 1,
-      date: "2022-07-09",
-      task: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-      status: "new",
-    },
-    {
-      id: 2,
-      date: "2022-05-09",
-      task: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-      status: "new",
-    },
-  ]);
+  const [taskList, setTask] = useState([]);
+
+  useEffect(() => {
+    const apiUrl = `https://reacttaskmanager-c929c-default-rtdb.firebaseio.com/tasks.json`;
+
+    axios.get(apiUrl).then((response) => {
+      if (response.data) {
+        setTask(Object.values(response.data));
+      }
+    });
+  });
 
   const displayItems = () => {
     return taskList.map((task) => {
