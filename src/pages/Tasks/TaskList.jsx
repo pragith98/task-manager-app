@@ -24,13 +24,21 @@ function TaskList() {
     });
   };
 
-  const handleNotComplete = (id)=>{
+  const handleNotComplete = (id) => {
     const apiUrl = `https://reacttaskmanager-c929c-default-rtdb.firebaseio.com/tasks/${id}.json`;
 
-    axios.patch(apiUrl,{status:"New"}).then((response)=>{
+    axios.patch(apiUrl, { status: "New" }).then((response) => {
       setTaskUpdate(!taskUpdate);
-    })
-  }
+    });
+  };
+
+  const handelDelete = (id) => {
+    const apiUrl = `https://reacttaskmanager-c929c-default-rtdb.firebaseio.com/tasks/${id}.json`;
+
+    axios.delete(apiUrl).then((response) => {
+      setTaskUpdate(!taskUpdate);
+    });
+  };
 
   const displayItems = () => {
     let i = 0;
@@ -46,6 +54,7 @@ function TaskList() {
           status={task.status}
           onComplete={handleComplete}
           notComplete={handleNotComplete}
+          onDelete={handelDelete}
         />
       );
     });
