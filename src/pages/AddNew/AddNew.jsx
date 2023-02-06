@@ -12,9 +12,8 @@ function AddNew() {
     task: "",
   };
 
-  const onSubmit = (values) => {
+  const onSubmit = (values, { resetForm }) => {
     const taskId = uuid4();
-
     const apiUrl = `https://reacttaskmanager-c929c-default-rtdb.firebaseio.com/tasks/${taskId}.json`;
     const task = { ...values, status: "New", id: taskId };
 
@@ -23,6 +22,7 @@ function AddNew() {
       .then((response) => {
         if (response.status === 200) {
           setMessage("Task has been saved.");
+          resetForm({ values: "" });
         }
       })
       .catch((error) => {
@@ -99,7 +99,9 @@ function AddNew() {
               </button>
             </fieldset>
             {message ? (
-              <div className="alert alert-dismissible alert-primary mt-4">{message}. Click here to see <Link to='/'>all tasks</Link></div>
+              <div className="alert alert-dismissible alert-primary mt-4">
+                {message}. Click here to see <Link to="/">all tasks</Link>
+              </div>
             ) : null}
           </form>
         </div>
