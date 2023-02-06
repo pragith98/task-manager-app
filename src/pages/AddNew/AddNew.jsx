@@ -1,21 +1,57 @@
+import { useFormik } from "formik";
+
 function AddNew() {
+  const initialValues = {
+    date: "",
+    task: "",
+  };
+
+  const onSubmit = (values) => {
+    console.log(values);
+  };
+
+  const validate = (values) => {
+    let errors = {};
+
+    if (!values.task) {
+      errors.task = "Task cannot be blank";
+    }
+
+    if (!values.date) {
+      errors.date = "date cannot be blank";
+    }
+
+    return errors;
+  };
+
+  const formik = useFormik({
+    initialValues,
+    onSubmit,
+    validate,
+  });
+
   return (
     <div className="container">
-      
       <div className="row justify-content-center mt-2">
         <div className="col-6">
-        <legend>Add new task</legend>
-          <form>
+          <legend>Add new task</legend>
+          <form onSubmit={formik.handleSubmit}>
             <fieldset>
               <div className="form-group">
                 <label>Date</label>
                 <input
-                  type="email"
+                  type="date"
                   className="form-control"
-                  id="exampleInputEmail1"
+                  id="date"
                   aria-describedby="emailHelp"
                   placeholder="Enter due date"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.date}
                 />
+                {formik.touched.date && formik.errors.date ? (
+                  <div className="small text-danger">{formik.errors.date}</div>
+                ) : null}
               </div>
 
               <br />
@@ -24,10 +60,16 @@ function AddNew() {
                 <label>Task</label>
                 <textarea
                   className="form-control"
-                  id="exampleTextarea"
+                  id="task"
                   rows="3"
                   placeholder="Enter task"
-                ></textarea>
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.task}
+                />
+                {formik.touched.task && formik.errors.task ? (
+                  <div className="small text-danger">{formik.errors.task}</div>
+                ) : null}
               </div>
 
               <br />
