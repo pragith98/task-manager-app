@@ -4,7 +4,7 @@ function TaskItem(props) {
       <div className="card-header">
         <div className="row">
           <div className="col-6">
-            <strong>Task 1</strong>
+            <strong>Task {props.id}</strong>
           </div>
           <div className="col-6 text-end">
             <small>{props.date}</small>

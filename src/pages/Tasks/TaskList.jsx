@@ -13,12 +13,15 @@ function TaskList() {
         setTask(Object.values(response.data));
       }
     });
-  });
+  }, []);
 
   const displayItems = () => {
+    let i = 0;
     return taskList.map((task) => {
+      i++;
       return (
         <TaskItem
+          id={i}
           key={task.id}
           date={task.date}
           task={task.task}
