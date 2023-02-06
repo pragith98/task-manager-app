@@ -15,9 +15,23 @@ function TaskItem(props) {
         <p className="card-text">{props.task}</p>
       </div>
       <div className="card-footer">
-        <button type="button" className="btn btn-success ml-2">
-          Complete
-        </button>
+        {props.status == "New" ? (
+          <button
+            type="button"
+            className="btn btn-success ml-2"
+            onClick={() => props.onComplete(props.taskId)}
+          >
+            Complete
+          </button>
+        ) : (
+          <button
+            type="button"
+            className="btn btn-primary ml-2"
+            onClick={() => props.notComplete(props.taskId)}
+          >
+            Not Complete
+          </button>
+        )}
         &nbsp;
         <button type="button" className="btn btn-danger">
           Delete
