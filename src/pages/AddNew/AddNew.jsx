@@ -8,13 +8,13 @@ function AddNew() {
           <form>
             <fieldset>
               <div className="form-group">
-                <label>Task Name</label>
+                <label>Date</label>
                 <input
                   type="email"
                   className="form-control"
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
-                  placeholder="Enter task name"
+                  placeholder="Enter due date"
                 />
               </div>
 
@@ -26,6 +26,7 @@ function AddNew() {
                   className="form-control"
                   id="exampleTextarea"
                   rows="3"
+                  placeholder="Enter task"
                 ></textarea>
               </div>
 
