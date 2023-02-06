@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useFormik } from "formik";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { v4 as uuid4 } from "uuid";
 
 function AddNew() {
@@ -21,11 +22,11 @@ function AddNew() {
       .put(apiUrl, task)
       .then((response) => {
         if (response.status === 200) {
-          setMessage("Data saved");
+          setMessage("Task has been saved.");
         }
       })
       .catch((error) => {
-        setMessage("Data not saved");
+        setMessage("Task not saved");
       });
   };
 
@@ -98,7 +99,7 @@ function AddNew() {
               </button>
             </fieldset>
             {message ? (
-              <div className="alert alert-dismissible alert-primary mt-4">{message}</div>
+              <div className="alert alert-dismissible alert-primary mt-4">{message}. Click here to see <Link to='/'>all tasks</Link></div>
             ) : null}
           </form>
         </div>
