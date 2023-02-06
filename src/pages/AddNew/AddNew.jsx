@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useFormik } from "formik";
+import { v4 as uuid4 } from "uuid";
 
 function AddNew() {
   const initialValues = {
@@ -8,10 +9,11 @@ function AddNew() {
   };
 
   const onSubmit = (values) => {
-    const apiUrl =
-      "https://reacttaskmanager-c929c-default-rtdb.firebaseio.com/tasks/1.json";
-    const task = { ...values, status: "New", id: 1 };
-    
+    const taskId = uuid4();
+
+    const apiUrl = `https://reacttaskmanager-c929c-default-rtdb.firebaseio.com/tasks/${taskId}.json`;
+    const task = { ...values, status: "New", id: taskId };
+
     axios
       .put(apiUrl, task)
       .then((response) => {
